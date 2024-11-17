@@ -894,7 +894,10 @@ int main() {
         cout <<"\t\t\t\t\t\t\t|  Code  |        Pizza         |         Price (Rs)        |" << endl;
         cout << "\t\t\t\t\t\t\t|______ _|______________________|___________________________|" << RESET << endl;
         for (int i = 1; i <= 10; i++) {
-            cout << "\t\t\t\t\t\t\t    " << i << "\t\t" << myPizzaShop->menu[i] << "\t\t" <<myPizzaShop->price[i] << endl;
+        	if (myPizzaShop->menu[i] == "Phantom") 
+        		cout << "\t\t\t\t\t\t\t    " << i << "\t\t" << myPizzaShop->menu[i] << "\t\t\t" <<myPizzaShop->price[i] << endl;
+        	else
+            	cout << "\t\t\t\t\t\t\t    " << i << "\t\t" << myPizzaShop->menu[i] << "\t\t" <<myPizzaShop->price[i] << endl;
         }
         cout << "\t\t\t\t\t\t\t|________|______________________|___________________________|\n" << endl;
 
@@ -918,7 +921,7 @@ int main() {
         cout << "\t\t\t\t\t\t\t|   10. View Dine-In Orders                                 |" << endl;
         cout << "\t\t\t\t\t\t\t|   11. View All Orders                                     |" << endl;
         cout << "\t\t\t\t\t\t\t|                                                           |" << endl;
-        cout << "\t\t\t\t\t\t\t|                       [Reports & Management]              |" << endl;
+        cout << "\t\t\t\t\t\t\t|                    [Reports & Management]                 |" << endl;
         cout << "\t\t\t\t\t\t\t|   12. View Served Orders History                          |" << endl;
         cout << "\t\t\t\t\t\t\t|   13. Search Order History                                |" << endl;
         cout << "\t\t\t\t\t\t\t|   14. Clear Order History                                 |" << endl;
