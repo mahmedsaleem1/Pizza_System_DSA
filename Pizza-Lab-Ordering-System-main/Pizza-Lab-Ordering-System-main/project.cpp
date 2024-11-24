@@ -1,10 +1,13 @@
 #include <iostream>
 #include <stdlib.h>
 #include <bits/stdc++.h>
+#include <thread>
+#include <chrono>
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
 #define BLUE "\033[34m"
+#define YELLOW "\033[33m"
 #define RESET "\033[0m"
 
 const int infinity = INT_MAX;
@@ -105,7 +108,6 @@ double servedTotal;
 
 struct servedCustomer
 {
-
     int age;
     string name;
     int quantity;
@@ -159,7 +161,7 @@ void display(servedCustomer *root)
 
 servedCustomer *displayAllServedOrders(servedCustomer *root)
 {
-
+	// In Order Traversal
     if (root)
     {
         displayAllServedOrders(root->left);
@@ -742,7 +744,7 @@ void displayAllOrdersDineInCustomers()
         while (traversal != NULL)
         {
             cout << "\t\t\t\t\t\t\t|____________________________________________________|" << endl;
-            cout << "\t\t\t\t\t\t\t| Walking Customer : " << traversal->cusotomer.name << endl;
+            cout << "\t\t\t\t\t\t\t| Dine-In Customer : " << traversal->cusotomer.name << endl;
             cout << "\t\t\t\t\t\t\t| Age : " << traversal->cusotomer.age << endl;
             cout << "\t\t\t\t\t\t\t| Pizza Name : " << traversal->cusotomer.pizzaName << endl;
             cout << "\t\t\t\t\t\t\t| Quantity : " << traversal->cusotomer.quantity << endl;
@@ -862,7 +864,35 @@ vector<int> dijkstra(int sourceNode)
     return distance;
 }
 
+void displayLoadingScreen() {
+    vector<string> pizzaFrames = {
+        "       *\n",
+        "      *@*\n",
+        "     ***@*\n",
+        "    **@****\n",
+        "   *****@***\n",
+        "  ********@**\n",
+        " ***@**@******\n",
+        "**********@****\n",
+    };
+
+    cout << RED <<"\n\n\n\t\t\t\t\t\t\t\t\tPIZZA SHOP IS OPENING, PLEASE WAIT...\n\n\n\n" << RESET;
+    
+    for (int i = 0; i < 3; ++i) { // 5 seconds loading
+        for (const auto& frame : pizzaFrames) {
+            cout << YELLOW << "\r" << "\t\t\t\t\t\t\t\t\t\t" << frame << RESET; // Overwrite the previous frame
+            cout.flush(); // Ensure the output is displayed immediately
+            this_thread::sleep_for(chrono::milliseconds(300)); // Adjust speed of rotationn
+        } 
+		cout << "\n\n\n" << endl;
+    }
+    
+    cout << "\r"; // Clear the loading line
+    cout << "                               \n"; // Clear the pizza display
+}
+
 int main() {
+	displayLoadingScreen();
     // making pizza shop
     myPizzaShop = new PizzaShop;
     myPizzaShop->shopName = "The Pizza Delight";
